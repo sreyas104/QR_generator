@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR code generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="qrcode.min.js"></script>
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">FILMPICKERS.</div>
+        <div class="nav">
+            <a href="#">Home</a>
+            <a href="#">About</a>
+
+        </div>
+    </div>
+    <div class="main">
+        <h1>QR-CODE GENERATOR</h1>
+        <h3>Let's convert into QR code.</h3>
+        <input type="text" id="qr-data" placeholder="Type here...">
+        <input type="button" value="GENERATE" id="btn" onclick="generateQRcode()">
+        <div class="qr">
+            <div id="qrcode"></div>
+        </div>
+
+    </div>
+    <script>
+
+        var qrdata = document.getElementById('qr-data');
+        var Qrcode = new QRCode(document.getElementById("qrcode"));
+        function generateQRcode() {
+            var data = qrdata.value;
+            Qrcode.makeCode(data);
+        }
+    </script>
+
+</body>
+
+</html>
