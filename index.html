@@ -5,14 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR code generator</title>
+    <title>QR code generator </title>
     <link rel="stylesheet" href="style.css">
     <script src="qrcode.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"
+        integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
     <div class="navbar">
-        <div class="logo">FILMPICKERS.</div>
+        <div class="logo">FILMPICKERS..</div>
         <div class="nav">
             <a href="#">Home</a>
             <a href="#">About</a>
@@ -21,13 +28,13 @@
     </div>
     <div class="main">
         <h1>QR-CODE GENERATOR</h1>
-        <h3>Let's convert into QR code.</h3>
+        <h3>Let's convert into QR code..</h3>
         <input type="text" id="qr-data" placeholder="Type here...">
         <input type="button" value="GENERATE" id="btn" onclick="generateQRcode()">
         <div class="qr">
             <div id="qrcode"></div>
         </div>
-
+        <button>Download QR <i class="fas fa-download"></i></button>
     </div>
     <script>
 
@@ -39,6 +46,26 @@
         }
     </script>
 
+
+    <script>
+
+
+        let btnDownload = document.querySelector('button');
+        let img = document.querySelector('img');
+
+
+        // Must use FileSaver.js 2.0.2 because 2.0.3 has issues.
+        btnDownload.addEventListener('click', () => {
+            let imagePath = img.getAttribute('src');
+            let fileName = getFileName(imagePath);
+            saveAs(imagePath, fileName);
+        });
+
+        function getFileName(str) {
+            return str.substring(str.lastIndexOf('/') + 1)
+        }
+
+    </script>
 </body>
 
 </html>
